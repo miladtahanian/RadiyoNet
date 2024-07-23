@@ -1,4 +1,4 @@
-package com.mtradiyo
+package ir.tahanian.radiyonet
 
 import android.app.Application
 import com.facebook.react.PackageList
