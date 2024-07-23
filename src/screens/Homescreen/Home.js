@@ -78,33 +78,35 @@ export default function Homescreen() {
   const [image, setImage] = useState(
     'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/284362464/original/5c0bdf343c073b0bc9215cdbf9089a99d29a7a66/do-online-radio-logo.jpg',
   );
-  const [playerState, setPlayerState] = useState('راه اندازی اولیه انجام شد');
+  const [playerState, setPlayerState] = useState('');
   const [volume, setVolume] = useState();
   const [loadingPlayer, setLoadingPlayer] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
   const netInfo = useNetInfo();
   const {width, height} = useWindowDimensions();
 
-  const Play = () => {
+  const Play = async () => {
     try {
       setLoadingPlayer(true);
       setLoadingImage(true);
-      SoundPlayer.playUrl(selected);
+      await SoundPlayer.playUrl(selected);
       PlayerState('در حال پخش');
       setLoadingPlayer(false);
       setLoadingImage(false);
       ActivateKeep();
     } catch (error) {
+      DeactivateKeep();
       PlayerState('خطا');
       setLoadingPlayer(false);
       setLoadingImage(false);
     }
   };
 
-  const Stop = () => {
-    SoundPlayer.stop();
+  const Stop = async () => {
+    await SoundPlayer.stop();
     PlayerState('پخش متوقف شد');
     setLoadingPlayer(false);
+    setLoadingImage(false);
     DeactivateKeep();
   };
 
@@ -112,8 +114,6 @@ export default function Homescreen() {
   const PlayerState = val => {
     setPlayerState(val);
   };
-
-  const PlayerMetadata = () => {};
 
   const ActivateKeep = () => {
     activateKeepAwake();
@@ -142,7 +142,7 @@ export default function Homescreen() {
     VolumeManager.addVolumeListener(result => {
       setVolume(result.music);
     });
-  });
+  }, [selected, playerState, netInfo.isConnected]);
 
   return (
     <GluestackUIProvider config={config}>
@@ -150,10 +150,14 @@ export default function Homescreen() {
         <>
           <Box
             backgroundColor="#212121"
+            shadowColor="#fff"
+            shadowOffset={1}
+            shadowOpacity={1}
+            zIndex={1}
             p={10}
-            elevation={7}
+            elevation={5}
             justifyContent="center"
-            alignItems="flex-end">
+            alignItems="center">
             <Heading color="#fff">رادیونِت</Heading>
           </Box>
           <Box
@@ -317,6 +321,7 @@ export default function Homescreen() {
           </Text>
           <TouchableOpacity
             onPress={() => {
+              Stop();
               RNRestart.Restart();
             }}>
             <Text style={[styles.text, {color: '#fff'}]}>بارگذاری مجدد</Text>
@@ -324,9 +329,10 @@ export default function Homescreen() {
         </View>
       ) : (
         <View style={styles.container}>
-          <Text style={styles.text}>اینترنت را بررسی کنید</Text>
+          <Text style={styles.text}>اتصال اینترنت را بررسی کنید</Text>
           <TouchableOpacity
             onPress={() => {
+              Stop();
               RNRestart.Restart();
             }}>
             <Text style={[styles.text, {color: '#fff'}]}>بارگذاری مجدد</Text>
