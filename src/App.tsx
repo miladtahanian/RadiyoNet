@@ -12,7 +12,12 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Homescreen}
-          options={{orientation: 'landscape', headerShown: false}}
+          options={{
+            orientation: 'landscape',
+            headerShown: false,
+            navigationBarHidden: true,
+            statusBarHidden: true,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

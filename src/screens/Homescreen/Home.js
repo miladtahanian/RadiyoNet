@@ -24,7 +24,12 @@ import {config} from '@gluestack-ui/config'; // Optional if you want to use defa
 import {SelectPortal} from '@gluestack-ui/themed';
 import {SelectBackdrop} from '@gluestack-ui/themed';
 import {useEffect, useState} from 'react';
-import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  useWindowDimensions,
+} from 'react-native';
 import {
   activateKeepAwake,
   deactivateKeepAwake,
@@ -39,21 +44,21 @@ import {View} from 'react-native';
 const items = [
   {
     id: 0,
-    title: 'Radio AVA Istanbul - 104.4 FM',
+    title: 'رادیو آوا ترکیه',
     url: 'http://play.markaradyo.com:8002/stream__',
     image:
       'https://play-lh.googleusercontent.com/2K8kybNmEp7Rl0CCSgHynGI_VHGGAHQPsZ3yG8_mF4XwH8Se6aLS-WpLZNkTAeWbKRo',
   },
   {
     id: 1,
-    title: 'Radio Khatereh',
+    title: 'رادیو خاطره',
     url: 'https://servidor22-5.brlogic.com:7160/live?source=website',
     image:
       'https://public-rf-upload.minhawebradio.net/175556/featured/5399a0b84a631cf192b583b1dfaff540.jpg',
   },
   {
     id: 2,
-    title: 'Radio Sarcheshmeh',
+    title: 'رادیو سرچشمه',
     url: 'https://sarcheshmeh2-ssl.icdndhcp.com/stream',
     image: 'https://i1.sndcdn.com/avatars-000075012418-tsvy0a-t240x240.jpg',
   },
@@ -78,6 +83,7 @@ export default function Homescreen() {
   const [loadingPlayer, setLoadingPlayer] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
   const netInfo = useNetInfo();
+  const {width, height} = useWindowDimensions();
 
   const Play = () => {
     try {
@@ -168,8 +174,8 @@ export default function Homescreen() {
                 <Image
                   source={{uri: image}}
                   alt="Image"
-                  width={Dimensions.get('window').width / 3}
-                  height={Dimensions.get('window').height / 1.5}
+                  width={width / 3}
+                  height={height / 1.5}
                   resizeMode="contain"
                 />
               )}
@@ -182,11 +188,11 @@ export default function Homescreen() {
               <Box
                 backgroundColor="#212121"
                 height={80}
-                width={Dimensions.get('window').width / 2.1}
+                width={width / 2.1}
                 justifyContent="center"
                 alignItems="center">
                 <Select
-                  width={Dimensions.get('window').width / 2.1}
+                  width={width / 2.25}
                   padding={10}
                   onValueChange={value => {
                     Stop();
@@ -197,15 +203,15 @@ export default function Homescreen() {
                     variant="outline"
                     height={50}
                     bgColor="#414141">
-                    <SelectInput
-                      placeholder="رادیو مورد نظر خود را انتخاب کنید"
-                      color="#fff"
-                    />
+                    <SelectInput placeholder="انتخاب کنید" color="#fff" />
                     <SelectIcon marginRight={10} as={ChevronDownIcon} />
                   </SelectTrigger>
                   <SelectPortal>
                     <SelectBackdrop />
-                    <SelectContent>
+                    <SelectContent
+                      width={width / 3}
+                      justifyContent="center"
+                      alignSelf="center">
                       <SelectDragIndicatorWrapper>
                         <SelectDragIndicator />
                       </SelectDragIndicatorWrapper>
@@ -215,6 +221,11 @@ export default function Homescreen() {
                             label={item.title}
                             value={index}
                             key={item.id}
+                            style={{
+                              alignSelf: 'center',
+                              width: width / 3,
+                              justifyContent: 'center',
+                            }}
                           />
                         );
                       })}
@@ -224,9 +235,9 @@ export default function Homescreen() {
               </Box>
               <Box
                 flex={1}
-                height={Dimensions.get('window').height}
+                height={height}
                 backgroundColor="#212121"
-                width={Dimensions.get('window').width / 2.1}
+                width={width / 2.1}
                 justifyContent="space-between"
                 padding={10}
                 alignItems="center">
@@ -278,7 +289,7 @@ export default function Homescreen() {
                   <Slider
                     defaultValue={volume}
                     size="sm"
-                    width={Dimensions.get('window').width / 3}
+                    width={width / 3}
                     orientation="horizontal"
                     onChangeEnd={value => {
                       onVolumeChange(value / 100);

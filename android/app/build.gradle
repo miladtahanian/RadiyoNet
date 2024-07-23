@@ -74,9 +74,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.mtradiyo"
+    namespace "ir.tahanian.radiyonet"
     defaultConfig {
-        applicationId "com.mtradiyo"
+        applicationId "ir.tahanian.radiyonet"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
