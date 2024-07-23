@@ -129,7 +129,7 @@ export default function Homescreen() {
 
   const initVolume = async () => {
     const {volume} = await VolumeManager.getVolume();
-    setVolume(parseInt(volume * 100));
+    setVolume(volume);
   };
 
   const onVolumeChange = async val => {
