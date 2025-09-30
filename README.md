@@ -1,79 +1,101 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# RadiyoNet
 
-# Getting Started
+**RadiyoNet** یک اپلیکیشن رادیو اینترنتی است که با **React Native** توسعه یافته است و امکان پخش آنلاین، مدیریت ایستگاه‌ها (stations)، ایجاد لیست‌های مورد علاقه و امکانات پایه‌ی رادیویی را فراهم می‌کند.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+---
 
-## Step 1: Start the Metro Server
+## ✨ قابلیت‌ها / امکانات اصلی
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- پخش رادیو آنلاین از URL ایستگاه‌ها  
+- فهرست ایستگاه‌های رادیویی  
+- افزودن ایستگاه به لیست علاقه‌مندی‌ها  
+- حذف یا مدیریت ایستگاه‌ها  
+- طراحی رابط کاربری مناسب موبایل  
+- امکان توقف، پخش مجدد، تنظیم صدا  
 
-To start Metro, run the following command from the _root_ of your React Native project:
+---
 
-```bash
-# using npm
-npm start
+## 🛠 فناوری‌ها و ابزارها
 
-# OR using Yarn
-yarn start
-```
+- React Native  
+- JavaScript / TypeScript (بسته به پیاده‌سازی)  
+- کتابخانه‌های مرتبط با پخش صوت (مثلاً `react-native-track-player`، `expo-av` یا مشابه)  
+- مدیریت وضعیت (State Management) مانند Redux / Context API  
+- ذخیره‌سازی محلی (AsyncStorage یا پایگاه داده محلی)  
 
-## Step 2: Start your Application
+---
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## 🔧 پیش‌نیازها
 
-### For Android
+برای اجرای پروژه به موارد زیر نیاز داری:
 
-```bash
-# using npm
-npm run android
+1. Node.js و npm (یا yarn)  
+2. محیط توسعه React Native (CLI یا Expo)  
+3. شبیه‌ساز اندروید یا دستگاه فیزیکی  
+4. مجوزهای لازم برای پخش صوت روی موبایل  
 
-# OR using Yarn
-yarn android
-```
+---
 
-### For iOS
+## 🚀 نصب و اجرا
 
-```bash
-# using npm
-npm run ios
+1. مخزن را کلون کن:
 
-# OR using Yarn
-yarn ios
-```
+   ```bash
+   git clone https://github.com/miladtahanian/RadiyoNet.git
+   ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+2. وارد دایرکتوری پروژه شو:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+   ```bash
+   cd RadiyoNet
+   ```
 
-## Step 3: Modifying your App
+3. نصب بسته‌ها:
 
-Now that you have successfully run the app, let's modify it.
+   ```bash
+   npm install
+   # یا
+   yarn install
+   ```
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+4. اجرای اپ:
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+   - اگر پروژه با Expo است:
 
-## Congratulations! :tada:
+     ```bash
+     expo start
+     ```
 
-You've successfully run and modified your React Native App. :partying_face:
+   - اگر با React Native CLI هست:
 
-### Now what?
+     ```bash
+     npx react-native run-android
+     # یا
+     npx react-native run-ios
+     ```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+5. بعد از راه‌اندازی، اپ را روی دستگاه یا شبیه‌ساز تست کن، ایستگاه‌ها را اضافه یا پخش کن.
 
-# Troubleshooting
+---
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## 📌 بهبودهای آینده پیشنهادی
 
-# Learn More
+- افزودن بخش جستجو بین ایستگاه‌ها  
+- پشتیبانی از گروه‌بندی ایستگاه‌ها (ژانرهای مختلف)  
+- امکان به‌روزرسانی زنده لیست ایستگاه‌ها از یک API  
+- طراحی تم تاریک / روشن  
+- پشتیبانی از پخش پس‌زمینه  
+- افزودن نوتیفیکیشن و کنترل از لاک‌اسکرین  
 
-To learn more about React Native, take a look at the following resources:
+---
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## 🧑‍💻 توسعه‌دهنده
+
+- 👤 **Milad Tahanian**  
+- 🌐 [Github Profile](https://github.com/miladtahanian)  
+
+---
+
+## 📝 مجوز
+
+این پروژه تحت **MIT License** منتشر شده است. برای جزئیات بیشتر به فایل `LICENSE` رجوع کنید.
